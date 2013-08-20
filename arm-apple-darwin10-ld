@@ -1,0 +1,9 @@
+#!/bin/sh
+
+TARGET_PLATFORM=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk
+TARGET_BIN="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin"
+
+TARGET_LD=$TARGET_BIN/ld
+TARGET_LDFLAGS="-L$TARGET_PLATFORM/usr/lib/ -arch armv7s"
+
+exec $TARGET_LD $TARGET_LDFLAGS "$@"

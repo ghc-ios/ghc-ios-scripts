@@ -1,0 +1,4 @@
+#!/bin/sh
+exec cabal --with-ghc=arm-apple-darwin10-ghc --with-ghc-pkg=arm-apple-darwin10-ghc-pkg --with-ld=arm-apple-darwin10-ld \
+--configure-option=--host=arm-apple-darwin10 \
+"$@"
