@@ -1,0 +1,9 @@
+#!/bin/sh
+
+TARGET_PLATFORM=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk/
+TARGET_BIN="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin"
+
+TARGET_GCC=$TARGET_BIN/i686-apple-darwin11-llvm-gcc-4.2
+TARGET_CFLAGS="-isysroot $TARGET_PLATFORM"
+
+exec $TARGET_GCC $TARGET_CFLAGS "$@"

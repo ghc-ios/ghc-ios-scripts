@@ -1,0 +1,9 @@
+#!/bin/sh
+
+TARGET_PLATFORM=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk/
+TARGET_BIN="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin"
+
+TARGET_LD=$TARGET_BIN/ld
+TARGET_LDFLAGS="-L$TARGET_PLATFORM/usr/lib/ -arch i386"
+
+exec $TARGET_LD $TARGET_LDFLAGS "$@"
