@@ -4,6 +4,6 @@ TARGET_PLATFORM=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimul
 TARGET_BIN="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin"
 
 TARGET_GCC=$TARGET_BIN/i686-apple-darwin11-llvm-gcc-4.2
-TARGET_CFLAGS="-isysroot $TARGET_PLATFORM"
+TARGET_CFLAGS="-isysroot $TARGET_PLATFORM -march=i386"
 
 exec $TARGET_GCC $TARGET_CFLAGS "$@"
