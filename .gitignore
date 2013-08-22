@@ -1,0 +1,3 @@
+clang-xcode5-wrapper
+*.o
+*.hi
