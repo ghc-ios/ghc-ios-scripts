@@ -24,6 +24,9 @@ $TARGET_GCC $TARGET_CFLAGS "-march=armv7s" ${allArgs//$fileName.o/$fileNameForAr
 
 # Lipo the two filename variants together
 lipo $fileNameForArmv7.o $fileNameForArmv7s.o -create -output $fileName.o
+
+# Clean up
+rm $fileNameForArmv7.o $fileNameForArmv7s.o
 else
 # If not building object files, call regularly.
 exec $TARGET_GCC $TARGET_CFLAGS "$@"
