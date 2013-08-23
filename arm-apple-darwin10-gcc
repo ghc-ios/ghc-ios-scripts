@@ -8,22 +8,23 @@ TARGET_CFLAGS="-isysroot $TARGET_PLATFORM -mcpu=cortex-a8 -mfpu=neon"
 
 allArgs=$@
 
-# Only need lipo when we're building object files
-if [[ "$allArgs" == *.o* ]]
-then
-# Find the filename 
-fileName=$(echo "$allArgs" | sed 's|.*-o \([^.]*\)\.o.*|\1|')
+# Check if we're building an object file by looking for "-o file.o", and find its filename
+# sed's -E allows extended regexes (cleaner syntax), -n suppresses non-matching input, the |p flag prints matches.
+outFileName=$(echo "$allArgs" | sed -En 's|.*-o ([^.]*)\.o.*|\1|p')
 
+# Only need lipo when we're building object files
+if [ -n "$outFileName" ]
+then
 # Create filename variants for armV7 and armV7s
-fileNameForArmv7=$fileName-armv7
-fileNameForArmv7s=$fileName-armv7s
+fileNameForArmv7=$outFileName-armv7
+fileNameForArmv7s=$outFileName-armv7s
 
 # Call gcc twice, once for each architecture, outputting to our filename variants
-$TARGET_GCC $TARGET_CFLAGS "-march=armv7" ${allArgs//$fileName.o/$fileNameForArmv7.o}
-$TARGET_GCC $TARGET_CFLAGS "-march=armv7s" ${allArgs//$fileName.o/$fileNameForArmv7s.o}
+$TARGET_GCC $TARGET_CFLAGS "-march=armv7" ${allArgs//$outFileName.o/$fileNameForArmv7.o}
+$TARGET_GCC $TARGET_CFLAGS "-march=armv7s" ${allArgs//$outFileName.o/$fileNameForArmv7s.o}
 
 # Lipo the two filename variants together
-lipo $fileNameForArmv7.o $fileNameForArmv7s.o -create -output $fileName.o
+lipo $fileNameForArmv7.o $fileNameForArmv7s.o -create -output $outFileName.o
 
 # Clean up
 rm $fileNameForArmv7.o $fileNameForArmv7s.o
