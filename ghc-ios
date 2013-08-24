@@ -5,9 +5,9 @@ GHCARM=/usr/local/ghc-ios/bin/arm-apple-darwin10-ghc
 GHCi386=/usr/local/ghc-ios-sim/bin/i386-apple-darwin11-ghc
 
 # Compile to architecture-specific libraries, cleaning up object files along the way to keep from confusing GHC
-$GHCARM $1.hs -o $1-arm
+$GHCARM -staticlib $1.hs -o $1-arm
 rm $1.o
-$GHCi386 $1.hs -o $1-i386
+$GHCi386 -staticlib $1.hs -o $1-i386
 rm $1.o
 
 # Combine the two architectures
