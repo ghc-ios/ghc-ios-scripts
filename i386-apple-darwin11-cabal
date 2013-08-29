@@ -2,4 +2,5 @@
 exec cabal --with-ghc=i386-apple-darwin11-ghc --with-ghc-pkg=i386-apple-darwin11-ghc-pkg \
 --with-gcc=i386-apple-darwin11-gcc --with-ld=i386-apple-darwin11-ld \
 --configure-option=--host=i386-apple-darwin11 \
+--hsc2hs-options=--cross-compile \
 "$@"
