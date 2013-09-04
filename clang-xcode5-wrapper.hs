@@ -1,5 +1,6 @@
 import System.Environment
 import System.Process
+import Data.List (isInfixOf)
 
 -- | This script wraps clang to pass it essential arguments that keep it from dying when
 -- GHC uses it as a C pre-processor during the build process.
@@ -21,8 +22,9 @@ flags =
 	]
 
 -- See if we're in preprocessor mode
-check args@("-E":"-undef":"-traditional":_) = replace args
-check other = other
+check args
+	| ["-E","-undef","-traditional"] `isInfixOf` args = replace args
+	| otherwise = args
 
 -- make sure we use assembler-with-cpp
 replace ("-x":"c":xs) = "-x":"assembler-with-cpp":replace xs
