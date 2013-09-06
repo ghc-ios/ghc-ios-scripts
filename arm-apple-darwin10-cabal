@@ -3,4 +3,5 @@ exec cabal --with-ghc=arm-apple-darwin10-ghc --with-ghc-pkg=arm-apple-darwin10-g
 --with-gcc=arm-apple-darwin10-gcc --with-ld=arm-apple-darwin10-ld \
 --configure-option=--host=arm-apple-darwin10 \
 --hsc2hs-options=--cross-compile \
+--builddir=dist-arm \
 "$@"
