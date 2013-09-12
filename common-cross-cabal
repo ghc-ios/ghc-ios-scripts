@@ -2,7 +2,7 @@
 case $1 in
     configure|install) OPTIONS="$COMMON $COMPILE $CONFIG" ;;
     build)             OPTIONS="$COMMON $COMPILE" ;;
-    list|info)         OPTIONS="" ;;
+    list|info|update)  OPTIONS="" ;;
     "")                OPTIONS="" ;;
     *)                 OPTIONS="$COMMON" ;;
 esac
