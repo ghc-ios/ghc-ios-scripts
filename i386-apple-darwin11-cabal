@@ -1,7 +1,9 @@
 #!/bin/sh
-exec cabal --with-ghc=i386-apple-darwin11-ghc --with-ghc-pkg=i386-apple-darwin11-ghc-pkg \
---with-gcc=i386-apple-darwin11-gcc --with-ld=i386-apple-darwin11-ld \
---configure-option=--host=i386-apple-darwin11 \
---hsc2hs-options=--cross-compile \
---builddir=dist-i386 \
-"$@"
+export COMMON="--builddir=dist-i386"
+export COMPILE="--with-ghc=i386-apple-darwin11-ghc
+                --with-ghc-pkg=i386-apple-darwin11-ghc-pkg
+                --with-gcc=i386-apple-darwin11-gcc
+                --with-ld=i386-apple-darwin11-ld
+                --hsc2hs-options=--cross-compile"
+export CONFIG="--configure-option=--host=i386-apple-darwin11"
+exec "`dirname $0`/common-cross-cabal" "$@"
