@@ -23,7 +23,7 @@ flags =
 
 -- See if we're in preprocessor mode
 check args
-	| ["-E","-undef","-traditional"] `isInfixOf` args = replace args
+	| and (map (`elem` args) ["-E","-undef","-traditional"]) = replace args
 	| otherwise = args
 
 -- make sure we use assembler-with-cpp
