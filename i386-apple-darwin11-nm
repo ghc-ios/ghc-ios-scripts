@@ -1,6 +1,4 @@
 #!/bin/sh
 
-TARGET_BIN="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin"
-
-TARGET_NM=$TARGET_BIN/nm
+TARGET_NM=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/nm
 exec $TARGET_NM "$@"

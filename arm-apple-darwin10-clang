@@ -1,10 +1,8 @@
 #!/bin/sh
 
-TARGET_PLATFORM=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk
-TARGET_BIN="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin"
-
-TARGET_GCC=$TARGET_BIN/arm-apple-darwin10-llvm-gcc-4.2
-TARGET_CFLAGS="-isysroot $TARGET_PLATFORM -mcpu=cortex-a8 -mfpu=neon"
+TARGET_PLATFORM=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk
+TARGET_GCC=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
+TARGET_CFLAGS="-isysroot $TARGET_PLATFORM -miphoneos-version-min=7.0"
 
 allArgs=$@
 
@@ -20,8 +18,8 @@ fileNameForArmv7=$outFileName-armv7
 fileNameForArmv7s=$outFileName-armv7s
 
 # Call gcc twice, once for each architecture, outputting to our filename variants
-$TARGET_GCC $TARGET_CFLAGS "-march=armv7" ${allArgs//$outFileName.o/$fileNameForArmv7.o}
-$TARGET_GCC $TARGET_CFLAGS "-march=armv7s" ${allArgs//$outFileName.o/$fileNameForArmv7s.o}
+$TARGET_GCC $TARGET_CFLAGS -arch armv7 ${allArgs//$outFileName.o/$fileNameForArmv7.o}
+$TARGET_GCC $TARGET_CFLAGS -arch armv7s ${allArgs//$outFileName.o/$fileNameForArmv7s.o}
 
 # Lipo the two filename variants together
 lipo $fileNameForArmv7.o $fileNameForArmv7s.o -create -output $outFileName.o
@@ -29,6 +27,6 @@ lipo $fileNameForArmv7.o $fileNameForArmv7s.o -create -output $outFileName.o
 # Clean up
 rm $fileNameForArmv7.o $fileNameForArmv7s.o
 else
-# If not building object files, call regularly.
-exec $TARGET_GCC $TARGET_CFLAGS "$@"
+# If not building object files, call regularly. Still need to include an arch to configure clang for arm mode.
+exec $TARGET_GCC $TARGET_CFLAGS -arch armv7 "$@"
 fi
