@@ -5,5 +5,5 @@ export COMPILE="--with-ghc=i386-apple-darwin11-ghc
                 --with-gcc=i386-apple-darwin11-clang
                 --with-ld=i386-apple-darwin11-ld
                 --hsc2hs-options=--cross-compile"
-export CONFIG="--configure-option=--host=i386-apple-darwin11"
+export CONFIG="--configure-option=--host=i386-apple-darwin11 --disable-shared"
 exec "`dirname $0`/common-cross-cabal" "$@"

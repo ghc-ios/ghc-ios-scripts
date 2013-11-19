@@ -5,5 +5,5 @@ export COMPILE="--with-ghc=arm-apple-darwin10-ghc
                 --with-gcc=arm-apple-darwin10-clang
                 --with-ld=arm-apple-darwin10-ld
                 --hsc2hs-options=--cross-compile"
-export CONFIG=--configure-option=--host=arm-apple-darwin10
+export CONFIG="--configure-option=--host=arm-apple-darwin10 --disable-shared"
 exec "`dirname $0`/common-cross-cabal" "$@"
