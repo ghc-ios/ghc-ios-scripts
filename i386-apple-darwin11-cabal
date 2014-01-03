@@ -1,5 +1,5 @@
 #!/bin/sh
-export COMMON="--builddir=dist-i386"
+export COMMON="--builddir=dist/i386"
 export COMPILE="--with-ghc=i386-apple-darwin11-ghc
                 --with-ghc-pkg=i386-apple-darwin11-ghc-pkg
                 --with-gcc=i386-apple-darwin11-clang
