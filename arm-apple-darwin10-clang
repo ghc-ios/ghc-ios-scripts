@@ -4,29 +4,32 @@ TARGET_PLATFORM=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.pl
 TARGET_GCC=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
 TARGET_CFLAGS="-isysroot $TARGET_PLATFORM -miphoneos-version-min=7.0"
 
-allArgs=$@
+exec $TARGET_GCC $TARGET_CFLAGS -arch armv7s "$@"
 
-# Check if we're building an object file by looking for "-o file.o", and find its filename
-# sed's -E allows extended regexes (cleaner syntax), -n suppresses non-matching input, the |p flag prints matches.
-outFileName=$(echo "$allArgs" | sed -En 's|.*-o ([^.]*)\.o.*|\1|p')
+# Not yet working:
+# allArgs=$@
 
-# Only need lipo when we're building object files
-if [ -n "$outFileName" ]
-then
-# Create filename variants for armV7 and armV7s
-fileNameForArmv7=$outFileName-armv7
-fileNameForArmv7s=$outFileName-armv7s
+# # Check if we're building an object file by looking for "-o file.o", and find its filename
+# # sed's -E allows extended regexes (cleaner syntax), -n suppresses non-matching input, the |p flag prints matches.
+# outFileName=$(echo "$allArgs" | sed -En 's|.*-o ([^.]*)\.o.*|\1|p')
 
-# Call gcc twice, once for each architecture, outputting to our filename variants
-$TARGET_GCC $TARGET_CFLAGS -arch armv7 ${allArgs//$outFileName.o/$fileNameForArmv7.o}
-$TARGET_GCC $TARGET_CFLAGS -arch armv7s ${allArgs//$outFileName.o/$fileNameForArmv7s.o}
+# # Only need lipo when we're building object files
+# if [ -n "$outFileName" ]
+# then
+# # Create filename variants for armV7 and armV7s
+# fileNameForArmv7=$outFileName-armv7
+# fileNameForArmv7s=$outFileName-armv7s
 
-# Lipo the two filename variants together
-lipo $fileNameForArmv7.o $fileNameForArmv7s.o -create -output $outFileName.o
+# # Call gcc twice, once for each architecture, outputting to our filename variants
+# $TARGET_GCC $TARGET_CFLAGS -arch armv7 ${allArgs//$outFileName.o/$fileNameForArmv7.o}
+# $TARGET_GCC $TARGET_CFLAGS -arch armv7s ${allArgs//$outFileName.o/$fileNameForArmv7s.o}
 
-# Clean up
-rm $fileNameForArmv7.o $fileNameForArmv7s.o
-else
-# If not building object files, call regularly. Still need to include an arch to configure clang for arm mode.
-exec $TARGET_GCC $TARGET_CFLAGS -arch armv7 "$@"
-fi
+# # Lipo the two filename variants together
+# lipo $fileNameForArmv7.o $fileNameForArmv7s.o -create -output $outFileName.o
+
+# # Clean up
+# rm $fileNameForArmv7.o $fileNameForArmv7s.o
+# else
+# # If not building object files, call regularly. Still need to include an arch to configure clang for arm mode.
+# exec $TARGET_GCC $TARGET_CFLAGS -arch armv7s "$@"
+# fi
