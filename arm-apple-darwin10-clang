@@ -45,11 +45,17 @@ for ext in o p_o l_o debug_o thr_o thr_debug_o thr_l_o thr_p_o
 do
     argsArmv7=${argsArmv7/.$ext/-armv7.$ext}
     argsArmv7s=${argsArmv7s/.$ext/-armv7s.$ext}
-    outFileName=$(echo "$args" | sed -En 's|.*-o ([^.]*)\.$ext.*|\1|p')
-    if [[ -n $outFileNameO ]]; then
-        objectExt=ext
+done
+
+for ext in o p_o l_o debug_o thr_o thr_debug_o thr_l_o thr_p_o
+do
+    match="s|.*-o ([^.]*)\.$ext.*|\1|p"
+    outFileName=$(echo "$args" | sed -En "$match")
+    if [[ -n $outFileName ]]; then
+        objectExt=$ext
         needLipo=true
         needFatCall=true
+        break
     fi
 done
 
