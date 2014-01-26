@@ -27,7 +27,7 @@ check args
 	| otherwise = args
 
 -- make sure we use assembler-with-cpp
-replace ("-x":"c":xs) = "-x":"assembler-with-cpp":replace xs
+replace ("-x":"c":xs) = "-P":"-x":"assembler-with-cpp":replace xs
 replace (x:xs) = x:replace xs
 replace [] = []
 

@@ -2,5 +2,7 @@
 
 # Simply multiplexes arguments over both simulator and device cabals
 
-i386-apple-darwin11-cabal $@
-arm-apple-darwin10-cabal $@
+i386-apple-darwin11-cabal $@ &
+arm-apple-darwin10-cabal $@ &
+armv7-apple-darwin10-cabal $@ &
+wait
