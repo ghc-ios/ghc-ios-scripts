@@ -1,20 +1,20 @@
 # Installing GHC iOS
 
-* Download these scripts from https://github.com/ghc-ios/ghc-ios-scripts. Place them in your path.
-* Download http://llvm.org/releases/3.0/clang+llvm-3.0-x86_64-apple-darwin11.tar.gz and place them somewhere easy to remember (e.g. /usr/local/clang-3.0/ — not in your path, since you don't want to override Xcode's clang)
+* Download these scripts from https://github.com/ghc-ios/ghc-ios-scripts. Place them in your PATH.
+* Download http://llvm.org/releases/3.0/clang+llvm-3.0-x86_64-apple-darwin11.tar.gz and place them somewhere easy to remember (e.g. /usr/local/clang-3.0/ — not in your PATH, since you don't want to override Xcode's clang)
 * Download and unpack https://github.com/ghc-ios/ghc-ios-scripts/releases/download/7.8-rc1-device/ghc-7.8.20140129-arm-apple-ios.tar.bz2
-* After running 
+* Run configure:
 ```
 ./configure
 ```
 
-* Edit the "settings" file.
+* Edit the "settings" file:
     * Ensure "C compiler command" is "arm-apple-darwin10-clang"
     * Ensure "ld command" is "arm-apple-darwin10-ld"
     * Ensure "LLVM llc command" is the full path to llc from Clang+LLVM 3.0 (as downloaded above, e.g. /usr/local/clang-3.0/bin/llc)
     * Ditto for "LLVM opt command" (e.g. "/usr/local/clang-3.0/bin/opt")
     
-* Install the compiler
+* Install the compiler:
 
 ```
 make install
@@ -22,7 +22,7 @@ make install
 
 # Using GHC iOS
 
-* Create a file named Counter.hs
+* Create a file named Counter.hs:
 ```haskell
 {-# LANGUAGE ForeignFunctionInterface #-}
 module Counter where
@@ -36,7 +36,7 @@ startCounter = void . forkIO . void . loop
             threadDelay (10^6)
             loop (i + 1)
 ```
-* Compile this like so to get Counter.a and Counter_stub.h
+* Compile this like so to get Counter.a and Counter_stub.h:
 ```
 arm-apple-darwin10-ghc -staticlib -threaded Counter.hs -o Counter
 ```
@@ -45,19 +45,21 @@ arm-apple-darwin10-ghc -staticlib -threaded Counter.hs -o Counter
 
 * Drag Counter.a and Counter_stub.h to the project's sidebar. Make sure "Add to Targets:" has a check next to your app.
 
-* Click on your project at the top of the Xcode sidebar. 
+* Click on your project at the top of the Xcode sidebar.
     * In the "Build Phases" tab, under "Link Binary with Libraries", click the + and choose libiconv.dylib
-    * In the "Build Settings" tab, set "Dead Code Stripping" to No, and add /usr/local/lib/arm-apple-darwin10-ghc-7.8.20140129/include/ to "Header Search Paths" (ensure this matches the date of the GHC-iOS binary you downloaded)
+    * In the "Build Settings" tab:
+         * Set "Architectures" to "Standard Architectures (armv7, armv7s)", as we don't support 64-bit yet
+         * Set "Dead Code Stripping" to No
+         * Add /usr/local/lib/arm-apple-darwin10-ghc-7.8.20140129/include/ to "Header Search Paths" (ensure this matches the date of the GHC-iOS binary you downloaded)
 
-* In your app's AppDelegate.m, 
+* In your app's AppDelegate.m:
 ```
 #import "Counter_stub.h"
 ```
-* and add
+* and at the top of *application:didFinishLaunchingWithOptions:*, add:
 ```
     hs_init(NULL, NULL);
     startCounter(3);
 ```
-* to the top of application:didFinishLaunchingWithOptions: .
 
 * Run your app! You should see a growing triangle of 'o's.
