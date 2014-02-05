@@ -1,3 +1,4 @@
+# Installing GHC iOS
 
 * Download these scripts from https://github.com/ghc-ios/ghc-ios-scripts. Place them in your path.
 * Download http://llvm.org/releases/3.0/clang+llvm-3.0-x86_64-apple-darwin11.tar.gz and place them somewhere easy to remember (e.g. /usr/local/clang-3.0/ — not in your path, since you don't want to override Xcode's clang)
@@ -8,16 +9,18 @@
 ```
 
 * Edit the "settings" file.
-    * (if you've already run "make install", you can edit the file in /usr/local/lib/arm-apple-darwin10-ghc-7.8.20140129/settings)
     * Ensure "C compiler command" is "arm-apple-darwin10-clang"
     * Ensure "ld command" is "arm-apple-darwin10-ld"
     * Ensure "LLVM llc command" is the full path to llc from Clang+LLVM 3.0 (as downloaded above, e.g. /usr/local/clang-3.0/bin/llc)
     * Ditto for "LLVM opt command" (e.g. "/usr/local/clang-3.0/bin/opt")
     
 * Install the compiler
+
 ```
 make install
 ```
+
+# Using GHC iOS
 
 * Create a file named Counter.hs
 ```haskell
