@@ -2,16 +2,13 @@
 
 # Expects to be called like "ghc-ios myHaskellFile" (note the lack of .hs)
 
-# Redirect these to the install paths of your ARMv7/s and i386 (iOS Simulator) builds of GHC
-GHCARM=/usr/local/ghc-ios/bin/arm-apple-darwin10-ghc
-GHCi386=/usr/local/ghc-ios-sim/bin/i386-apple-darwin11-ghc
+# GHC complains about the -o path if this isn't here
+mkdir -p build/arm
+mkdir -p build/i386
 
 # Compile to architecture-specific libraries
-$GHCARM  -threaded -staticlib -odir arm_o  $1.hs -o $1-arm  -pgmlibtool libtool-quiet
-$GHCi386 -threaded -staticlib -odir i386_o $1.hs -o $1-i386 -pgmlibtool libtool-quiet
+arm-apple-darwin10-ghc  -threaded -staticlib -outputdir build/arm  -o build/arm/$1  -pgmlibtool libtool-quiet $1.hs
+i386-apple-darwin11-ghc -threaded -staticlib -outputdir build/i386 -o build/i386/$1 -pgmlibtool libtool-quiet $1.hs
 
 # Combine the two architectures
-lipo $1-i386.a $1-arm.a -create -output $1.a
-
-# Clean up architecture-specific archives
-rm $1-i386.a $1-arm.a
+lipo build/arm/$1.a build/i386/$1.a -create -output $1.a
