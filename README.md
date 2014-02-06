@@ -18,7 +18,7 @@
     make install
     ```
 * Download the GHC iOS for the simulator: https://github.com/ghc-ios/ghc-ios-scripts/releases/download/7.8-rc1-simulator/ghc-7.8.20140130-i386-apple-ios.tar.bz2
-* Unpack it, Run configure:
+    * Unpack it, Run configure:
     ```
     ./configure
     ```
