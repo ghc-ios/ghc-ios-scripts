@@ -2,24 +2,36 @@
 
 * Download these scripts from https://github.com/ghc-ios/ghc-ios-scripts. Place them in your PATH.
 * Download http://llvm.org/releases/3.0/clang+llvm-3.0-x86_64-apple-darwin11.tar.gz and place them somewhere easy to remember (e.g. /usr/local/clang-3.0/ — not in your PATH, since you don't want to override Xcode's clang)
-* Download and unpack https://github.com/ghc-ios/ghc-ios-scripts/releases/download/7.8-rc1-device/ghc-7.8.20140129-arm-apple-ios.tar.bz2
-* Run configure:
-```
-./configure
-```
-
-* Edit the "settings" file:
-    * Ensure "C compiler command" is "arm-apple-darwin10-clang"
-    * Ensure "ld command" is "arm-apple-darwin10-ld"
-    * Ensure "LLVM llc command" is the full path to llc from Clang+LLVM 3.0 (as downloaded above, e.g. /usr/local/clang-3.0/bin/llc)
-    * Ditto for "LLVM opt command" (e.g. "/usr/local/clang-3.0/bin/opt")
+* Download the GHC iOS for the device: https://github.com/ghc-ios/ghc-ios-scripts/releases/download/7.8-rc2-device/ghc-7.8.0.20140228-arm-apple-ios.tar.bz2
+    * Unpack it, Run configure:
+    ```
+    ./configure
+    ```
+    * Edit the "settings" file:
+        * Ensure "C compiler command" is "arm-apple-darwin10-clang"
+        * Ensure "ld command" is "arm-apple-darwin10-ld"
+        * Ensure "LLVM llc command" is the full path to llc from Clang+LLVM 3.0 (as downloaded above, e.g. /usr/local/clang-3.0/bin/llc)
+        * Ditto for "LLVM opt command" (e.g. "/usr/local/clang-3.0/bin/opt")
     
-* Install the compiler:
-
-```
-make install
-```
-
+    * Install the compiler:
+    ```
+    make install
+    ```
+* Download the GHC iOS for the simulator: https://github.com/ghc-ios/ghc-ios-scripts/releases/download/7.8-rc2-simulator/ghc-7.8.0.20140228-i386-apple-ios.tar.bz2
+    * Unpack it, Run configure:
+    ```
+    ./configure
+    ```
+    * Edit the "settings" file:
+        * Ensure "C compiler command" is "i386-apple-darwin11-clang"
+        * Ensure "ld command" is "i386-apple-darwin11-ld"
+        * Ensure "LLVM llc command" is the full path to llc from Clang+LLVM 3.0 (as downloaded above, e.g. /usr/local/clang-3.0/bin/llc)
+        * Ditto for "LLVM opt command" (e.g. "/usr/local/clang-3.0/bin/opt")
+    
+    * Install the compiler:
+    ```
+    make install
+    ```
 # Using GHC iOS
 
 * Create a file named Counter.hs:
@@ -38,8 +50,9 @@ startCounter = void . forkIO . void . loop
 ```
 * Compile this like so to get Counter.a and Counter_stub.h:
 ```
-arm-apple-darwin10-ghc -staticlib -threaded Counter.hs -o Counter
+ghc-ios Counter
 ```
+(Counter.a will be a fat binary that works with both devices and the simulator.)
 
 * Create or open an Xcode project (the Single View Application template is simple for testing)
 
@@ -63,3 +76,16 @@ arm-apple-darwin10-ghc -staticlib -threaded Counter.hs -o Counter
 ```
 
 * Run your app! You should see a growing triangle of 'o's.
+
+# Using GHC iOS with Cabal
+
+* You'll need a very recent version of Cabal: http://www.haskell.org/cabal/download.html
+* You'll also need to check that the option **jobs: $ncpus** does not appear in your *~/.cabal/config* file, as it triggers a mode that does not support cross-compilation.
+* To install a package for the device and simulator, use cabal-ios (included in ghc-ios-scripts) like:
+```
+cabal-ios install text
+```
+* You should now be able to use the package in a file compiled with ghc-ios. The package will be statically linked into the .a library.
+
+
+
