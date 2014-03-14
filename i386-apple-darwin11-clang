@@ -1,6 +1,6 @@
 #!/bin/sh
 
-TARGET_PLATFORM=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.0.sdk
+TARGET_PLATFORM=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk
 TARGET_GCC=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
 TARGET_CFLAGS="-isysroot $TARGET_PLATFORM -arch i386 -mios-simulator-version-min=7.0"
 
