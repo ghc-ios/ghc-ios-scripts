@@ -2,7 +2,7 @@
 
 * Download these scripts from https://github.com/ghc-ios/ghc-ios-scripts. Place them in your PATH.
 * Download http://llvm.org/releases/3.0/clang+llvm-3.0-x86_64-apple-darwin11.tar.gz and place them somewhere easy to remember (e.g. /usr/local/clang-3.0/ — not in your PATH, since you don't want to override Xcode's clang)
-* Download the GHC iOS for the device: https://github.com/ghc-ios/ghc-ios-scripts/releases/download/7.8-rc2-device/ghc-7.8.0.20140228-arm-apple-ios.tar.bz2
+* Download the GHC iOS for the device: https://github.com/ghc-ios/ghc-ios-scripts/releases/download/7.8.1-device/ghc-7.8.1-arm-apple-ios.tar.bz2
     * Unpack it, Run configure:
     ```
     ./configure
@@ -17,7 +17,7 @@
     ```
     make install
     ```
-* Download the GHC iOS for the simulator: https://github.com/ghc-ios/ghc-ios-scripts/releases/download/7.8-rc2-simulator/ghc-7.8.0.20140228-i386-apple-ios.tar.bz2
+* Download the GHC iOS for the simulator: https://github.com/ghc-ios/ghc-ios-scripts/releases/download/7.8.1/ghc-7.8.1-i386-apple-ios.tar.bz2
     * Unpack it, Run configure:
     ```
     ./configure
