@@ -1,1 +1,2 @@
-ranlib $@
+#!/bin/sh
+exec ranlib $@
