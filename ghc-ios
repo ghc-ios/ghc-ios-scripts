@@ -7,8 +7,8 @@ mkdir -p build/arm
 mkdir -p build/i386
 
 # Compile to architecture-specific libraries
-arm-apple-darwin10-ghc  -threaded -staticlib -outputdir build/arm  -o build/arm/$1  -pgmlibtool libtool-quiet $1.hs
-i386-apple-darwin11-ghc -threaded -staticlib -outputdir build/i386 -o build/i386/$1 -pgmlibtool libtool-quiet $1.hs
+arm-apple-darwin10-ghc  -threaded -staticlib -outputdir build/arm  -o build/arm/$1  -pgmlibtool libtool-quiet $1.hs -stubdir .
+i386-apple-darwin11-ghc -threaded -staticlib -outputdir build/i386 -o build/i386/$1 -pgmlibtool libtool-quiet $1.hs -stubdir .
 
 # Combine the two architectures
 lipo build/arm/$1.a build/i386/$1.a -create -output $1.a
