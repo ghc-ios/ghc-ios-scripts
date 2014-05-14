@@ -30,7 +30,12 @@
     ```
 # Using GHC iOS
 
-* Create a file named Counter.hs:
+* Create or open an Xcode project (the Single View Application template is simple for testing)
+* Add HaskelliOS.xcconfig from this repository to your project. It doesn't need to be added to any targets.
+    * Click on your project at the top of the Xcode sidebar, and make sure your project is selected within it.
+    * In the "Info" tab, under "Configuration", expand each configuration and choose HaskelliOS.
+    * You may need to adjust the HEADER_SEARCH_PATHS to match your installed GHC.
+* Compile your Haskell code with ghc-ios. For example, if you had a file named Counter.hs:
 ```haskell
 {-# LANGUAGE ForeignFunctionInterface #-}
 module Counter where
@@ -50,11 +55,7 @@ ghc-ios Counter
 ```
 (Counter.a will be a fat binary that works with both devices and the simulator.)
 
-* Create or open an Xcode project (the Single View Application template is simple for testing)
-* Add HaskelliOS.xcconfig from this repository to your project. It doesn't need to be added to any targets.
-    * Click on your project at the top of the Xcode sidebar, and make sure your project is selected within it.
-    * In the "Info" tab, under "Configuration", expand each configuration and choose HaskelliOS.
-    * (you may need to adjust the HEADER_SEARCH_PATHS to match your installed GHC)
+
 * Drag Counter.a and Counter_stub.h to the project's sidebar. Make sure "Add to Targets:" has a check next to your app.
 
 
