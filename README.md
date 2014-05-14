@@ -73,7 +73,7 @@ ghc-ios Counter
 
 # Using GHC iOS with Cabal
 
-* You'll need a very recent version of Cabal: http://www.haskell.org/cabal/download.html
+* You'll need a very recent version of Cabal: ```cabal install cabal-install```
 * You'll also need to check that the option **jobs: $ncpus** does not appear in your *~/.cabal/config* file, as it triggers a mode that does not support cross-compilation.
 * To install a package for the device and simulator, use cabal-ios (included in ghc-ios-scripts) like:
 ```
