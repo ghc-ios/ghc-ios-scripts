@@ -1,7 +1,7 @@
 # Installing GHC iOS
 
+* Install LLVM with ```brew install llvm```.
 * Download these scripts from https://github.com/ghc-ios/ghc-ios-scripts. Place them in your PATH.
-* Download http://llvm.org/releases/3.0/clang+llvm-3.0-x86_64-apple-darwin11.tar.gz and place them somewhere easy to remember (e.g. /usr/local/clang-3.0/ — not in your PATH, since you don't want to override Xcode's clang)
 * Download the GHC iOS for the device: https://github.com/ghc-ios/ghc-ios-scripts/releases/download/7.8.2-device/ghc-7.8.2-arm-apple-ios.tar.bz2
     * Unpack it, Run configure:
     ```
@@ -10,8 +10,6 @@
     * Edit the "settings" file:
         * Ensure "C compiler command" is "arm-apple-darwin10-clang"
         * Ensure "ld command" is "arm-apple-darwin10-ld"
-        * Ensure "LLVM llc command" is the full path to llc from Clang+LLVM 3.0 (as downloaded above, e.g. /usr/local/clang-3.0/bin/llc)
-        * Ditto for "LLVM opt command" (e.g. "/usr/local/clang-3.0/bin/opt")
     
     * Install the compiler:
     ```
@@ -25,8 +23,6 @@
     * Edit the "settings" file:
         * Ensure "C compiler command" is "i386-apple-darwin11-clang"
         * Ensure "ld command" is "i386-apple-darwin11-ld"
-        * Ensure "LLVM llc command" is the full path to llc from Clang+LLVM 3.0 (as downloaded above, e.g. /usr/local/clang-3.0/bin/llc)
-        * Ditto for "LLVM opt command" (e.g. "/usr/local/clang-3.0/bin/opt")
     
     * Install the compiler:
     ```
