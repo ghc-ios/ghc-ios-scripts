@@ -63,7 +63,7 @@ ghc-ios Counter
     * In the "Build Settings" tab:
          * Set "Architectures" to "Standard Architectures (armv7, armv7s)", as we don't support 64-bit yet
          * Set "Dead Code Stripping" to No
-         * Add /usr/local/lib/arm-apple-darwin10-ghc-7.8.20140129/include/ to "Header Search Paths" (ensure this matches the date of the GHC-iOS binary you downloaded)
+         * Add /usr/local/lib/arm-apple-darwin10-ghc-7.8.2/include/ to "Header Search Paths" (ensure this matches the date of the GHC-iOS binary you downloaded)
 
 * In your app's AppDelegate.m:
 ```
