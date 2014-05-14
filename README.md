@@ -55,15 +55,12 @@ ghc-ios Counter
 (Counter.a will be a fat binary that works with both devices and the simulator.)
 
 * Create or open an Xcode project (the Single View Application template is simple for testing)
-
+* Add HaskelliOS.xcconfig from this repository to your project. It doesn't need to be added to any targets.
+    * Click on your project at the top of the Xcode sidebar, and make sure your project is selected within it.
+    * In the "Info" tab, under "Configuration", expand each configuration and choose HaskelliOS.
+    * (you may need to adjust the HEADER_SEARCH_PATHS to match your installed GHC)
 * Drag Counter.a and Counter_stub.h to the project's sidebar. Make sure "Add to Targets:" has a check next to your app.
 
-* Click on your project at the top of the Xcode sidebar.
-    * In the "Build Phases" tab, under "Link Binary with Libraries", click the + and choose libiconv.dylib
-    * In the "Build Settings" tab:
-         * Set "Architectures" to "Standard Architectures (armv7, armv7s)", as we don't support 64-bit yet
-         * Set "Dead Code Stripping" to No
-         * Add /usr/local/lib/arm-apple-darwin10-ghc-7.8.20140129/include/ to "Header Search Paths" (ensure this matches the date of the GHC-iOS binary you downloaded)
 
 * In your app's AppDelegate.m:
 ```

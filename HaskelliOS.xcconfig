@@ -1,0 +1,28 @@
+//
+//  HaskelliOS.xcconfig
+//  Haskell iOS
+//
+//  Created by Luke Iannini on 5/14/14.
+//
+
+// We don't support 64bit architectures yet.
+VALID_ARCHS = armv7 armv7s
+
+// Avoids stripping out critical GHC runtime code (Simon Marlow has mentioned there may be around needing this)
+DEAD_CODE_STRIPPING = NO
+
+
+
+// Be sure to include $(inherited) if you override any of the following:
+
+// Required by the Haskell runtime
+OTHER_LDFLAGS = -liconv
+
+// You can use this instead to ignore the annoying
+// "could not create compact unwind for .LFB3: non-standard register 5 being saved in prolog"
+// error, which is harmless. But it masks all warnings, so be careful.
+// OTHER_LDFLAGS = -liconv -w
+
+// Configure this to match your installed GHC
+HEADER_SEARCH_PATHS = /usr/local/lib/ghc-7.8.2/include
+
