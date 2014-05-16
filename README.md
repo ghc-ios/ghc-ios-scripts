@@ -15,7 +15,7 @@ PATH=~/bin/ghc-ios-scripts:$PATH
 
 * Run the installer script. GHC iOS will politely live alongside your existing native GHC installation.
 ```
-./installGHCiOS.sh
+installGHCiOS.sh
 ```
 
 # Using GHC iOS
