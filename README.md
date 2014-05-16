@@ -8,7 +8,6 @@
       * Remove **jobs: $ncpus** from *~/.cabal/config* if it's there
    * Download these scripts and place them in your PATH. For example:
 ```
-mkdir -p ~/bin
 git clone git@github.com:ghc-ios/ghc-ios-scripts.git ~/bin/ghc-ios-scripts
 echo -e "\nPATH=~/bin/ghc-ios-scripts:"'$PATH' >> ~/.profile
 PATH=~/bin/ghc-ios-scripts:$PATH
