@@ -1,18 +1,20 @@
 # Installing GHC iOS
 
-* Grab Homebrew if you don't have it: http://brew.sh
+* Prerequisites:
+   * Install Xcode http://itunes.apple.com/us/app/xcode/id497799835
+   * Grab Homebrew if you don't have it: http://brew.sh
 ```ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"```
 
-* Install LLVM with ```brew install llvm``` and wget with ```brew install wget```
-* Download these scripts and place them in your PATH.
+   * Install LLVM with ```brew install llvm``` and wget with ```brew install wget```
+   * Download these scripts and place them in your PATH. For example:
 ```
 mkdir -p ~/bin
 git clone git@github.com:ghc-ios/ghc-ios-scripts.git ~/bin
-PATH=~/bin/ghc-ios-scripts:$PATH
 echo PATH=~/bin/ghc-ios-scripts:$PATH >> ~/.profile
+PATH=~/bin/ghc-ios-scripts:$PATH
 ```
 
-* Run the installer script (have a look inside if you'd like to do it manually, it's pretty straightforward)
+* Run the installer script. GHC iOS will politely live alongside your existing native GHC installation.
 ```
 ./installGHCiOS.sh
 ```
