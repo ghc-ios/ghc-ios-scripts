@@ -1,25 +1,36 @@
 # Installing GHC iOS
 
 * Install LLVM with ```brew install llvm```.
-* Download these scripts from https://github.com/ghc-ios/ghc-ios-scripts. Place them in your PATH.
-* Download the GHC iOS for the device: https://github.com/ghc-ios/ghc-ios-scripts/releases/download/7.8.2-device/ghc-7.8.2-arm-apple-ios.tar.bz2
-    * Unpack it, run configure, and fixup paths, and install:
-    ```
-    tar xvf ghc-7.8.2-arm-apple-ios.tar.bz2 && mv ghc-7.8.2 ghc-7.8.2-arm && cd ghc-7.8.2-arm
-    ./configure
-    sed -i '' 's|/usr/bin/gcc|arm-apple-darwin10-clang|g' settings
-    sed -i '' 's|/usr/bin/ld|arm-apple-darwin10-ld|g' settings
-    make install
-    ```
-* Download the GHC iOS for the simulator: https://github.com/ghc-ios/ghc-ios-scripts/releases/download/7.8.2-simulator/ghc-7.8.2-i386-apple-ios.tar.bz2
-    * Unpack it, run configure, and fixup paths to the correct executables:
-    ```
-    tar xvf ghc-7.8.2-i386-apple-ios.tar.bz2 && mv ghc-7.8.2 ghc-7.8.2-i386 && cd ghc-7.8.2-i386
-    ./configure
-    sed -i '' 's|/usr/bin/gcc|i386-apple-darwin11-clang|g' settings
-    sed -i '' 's|/usr/bin/ld|i386-apple-darwin11-ld|g' settings
-    make install
-    ```
+* Download these scripts and place them in your PATH.
+```
+git clone git@github.com:ghc-ios/ghc-ios-scripts.git ~/bin
+PATH=~/bin/ghc-ios-scripts:$PATH
+echo PATH=~/bin/ghc-ios-scripts:$PATH >> ~/.profile
+```
+
+* Install the GHC iOS for the device:
+```
+cd ~/Downloads
+wget https://www.haskell.org/ghc/dist/7.8.2/ghc-7.8.2-arm-apple-ios.tar.xz
+tar xvf ghc-7.8.2-arm-apple-ios.tar.bz2 && mv ghc-7.8.2 ghc-7.8.2-arm
+cd ghc-7.8.2-arm
+./configure
+sed -i '' 's|/usr/bin/gcc|arm-apple-darwin10-clang|g' settings
+sed -i '' 's|/usr/bin/ld|arm-apple-darwin10-ld|g' settings
+make install
+```
+
+* Install GHC iOS for the simulator:
+```
+cd ~/Downloads
+wget https://www.haskell.org/ghc/dist/7.8.2/ghc-7.8.2-i386-apple-ios.tar.xz
+tar xvf ghc-7.8.2-i386-apple-ios.tar.bz2 && mv ghc-7.8.2 ghc-7.8.2-i386
+cd ghc-7.8.2-i386
+./configure
+sed -i '' 's|/usr/bin/gcc|i386-apple-darwin11-clang|g' settings
+sed -i '' 's|/usr/bin/ld|i386-apple-darwin11-ld|g' settings
+make install
+```
 
 # Using GHC iOS
 
