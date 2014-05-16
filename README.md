@@ -71,6 +71,17 @@ ghc-ios Counter
 
 * Run your app! You should see a growing triangle of 'o's.
 
+* To automatically rebuild your Haskell file each time you rebuild your project:
+   * Click your project at the top of the Xcode sidebar, then click on your app under Targets on the left.
+   * Click the "Build Phases" tab, then click the + at the top left and choose "New Run Script Build phase"
+   * Drag the new Run Script build phase to the top of the list.
+   * Enter:
+```
+source ~/.profile # or ~/.bash_profile, whichever you use
+ghc-ios Counter
+```
+Xcode will now run these commands each time it builds your project.
+
 # Using GHC iOS with Cabal
 
 * You'll need a very recent version of Cabal: ```cabal install cabal-install```
