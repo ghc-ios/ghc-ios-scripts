@@ -10,7 +10,7 @@
 ```
 mkdir -p ~/bin
 git clone git@github.com:ghc-ios/ghc-ios-scripts.git ~/bin
-echo \PATH=~/bin/ghc-ios-scripts:'$PATH' >> ~/.profile
+echo -e "\nPATH=~/bin/ghc-ios-scripts:"'$PATH' >> ~/.profile
 PATH=~/bin/ghc-ios-scripts:$PATH
 ```
 
