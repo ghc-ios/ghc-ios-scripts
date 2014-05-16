@@ -82,5 +82,6 @@ cabal-ios install text
 ```
 * You should now be able to use the package in a file compiled with ghc-ios. The package will be statically linked into the .a library.
 
-
+# Troubleshooting
+* If you run into ```Illegal instruction: 4``` while running ```make install```, please see this discussion https://github.com/ghc-ios/ghc-ios-scripts/issues/4 — we're not sure what causes it yet but the thread contains a working solution.
 
