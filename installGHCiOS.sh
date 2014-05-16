@@ -3,7 +3,7 @@
 echo "Downloading GHC for iOS devices..."
 cd /tmp
 wget https://www.haskell.org/ghc/dist/7.8.2/ghc-7.8.2-arm-apple-ios.tar.xz
-tar xvf ghc-7.8.2-arm-apple-ios.tar.bz2 && mv ghc-7.8.2 ghc-7.8.2-arm
+tar xvf ghc-7.8.2-arm-apple-ios.tar.xz && mv ghc-7.8.2 ghc-7.8.2-arm
 cd ghc-7.8.2-arm
 ./configure
 # Fix the settings file to point to the right scripts
@@ -15,7 +15,7 @@ sudo make install
 echo "Downloading GHC for the iOS simulator..."
 cd /tmp
 wget https://www.haskell.org/ghc/dist/7.8.2/ghc-7.8.2-i386-apple-ios.tar.xz
-tar xvf ghc-7.8.2-i386-apple-ios.tar.bz2 && mv ghc-7.8.2 ghc-7.8.2-i386
+tar xvf ghc-7.8.2-i386-apple-ios.tar.xz && mv ghc-7.8.2 ghc-7.8.2-i386
 cd ghc-7.8.2-i386
 ./configure
 # Fix the settings file to point to the right scripts
