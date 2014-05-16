@@ -62,6 +62,7 @@ ghc-ios Counter
 
 * Drag Counter.a and Counter_stub.h to the project's sidebar. Make sure "Add to Targets:" has a check next to your app.
 
+* In main.m ```#import "HsFFI.h"``` and add ```hs_init(NULL, NULL);``` to the top of ```main()```
 
 * In your app's AppDelegate.m:
 ```
@@ -69,7 +70,6 @@ ghc-ios Counter
 ```
 * and at the top of *application:didFinishLaunchingWithOptions:*, add:
 ```
-    hs_init(NULL, NULL);
     startCounter(3);
 ```
 
