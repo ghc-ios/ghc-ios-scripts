@@ -1,35 +1,20 @@
 # Installing GHC iOS
 
-* Install LLVM with ```brew install llvm```.
+* Grab Homebrew if you don't have it: http://brew.sh
+```ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"```
+
+* Install LLVM with ```brew install llvm``` and wget with ```brew install wget```
 * Download these scripts and place them in your PATH.
 ```
+mkdir -p ~/bin
 git clone git@github.com:ghc-ios/ghc-ios-scripts.git ~/bin
 PATH=~/bin/ghc-ios-scripts:$PATH
 echo PATH=~/bin/ghc-ios-scripts:$PATH >> ~/.profile
 ```
 
-* Install the GHC iOS for the device:
+* Run the installer script (have a look inside if you'd like to do it manually, it's pretty straightforward)
 ```
-cd ~/Downloads
-wget https://www.haskell.org/ghc/dist/7.8.2/ghc-7.8.2-arm-apple-ios.tar.xz
-tar xvf ghc-7.8.2-arm-apple-ios.tar.bz2 && mv ghc-7.8.2 ghc-7.8.2-arm
-cd ghc-7.8.2-arm
-./configure
-sed -i '' 's|/usr/bin/gcc|arm-apple-darwin10-clang|g' settings
-sed -i '' 's|/usr/bin/ld|arm-apple-darwin10-ld|g' settings
-make install
-```
-
-* Install GHC iOS for the simulator:
-```
-cd ~/Downloads
-wget https://www.haskell.org/ghc/dist/7.8.2/ghc-7.8.2-i386-apple-ios.tar.xz
-tar xvf ghc-7.8.2-i386-apple-ios.tar.bz2 && mv ghc-7.8.2 ghc-7.8.2-i386
-cd ghc-7.8.2-i386
-./configure
-sed -i '' 's|/usr/bin/gcc|i386-apple-darwin11-clang|g' settings
-sed -i '' 's|/usr/bin/ld|i386-apple-darwin11-ld|g' settings
-make install
+./installGHCiOS.sh
 ```
 
 # Using GHC iOS
