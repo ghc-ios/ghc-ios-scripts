@@ -3,9 +3,7 @@
 * Prerequisites:
    * Install Xcode http://itunes.apple.com/us/app/xcode/id497799835
    * Grab Homebrew if you don't have it: http://brew.sh
-```ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"```
-
-   * Install LLVM with ```brew install llvm``` and wget with ```brew install wget```
+   * Install LLVM and wget with ```brew install llvm wget```
    * Download these scripts and place them in your PATH. For example:
 ```
 mkdir -p ~/bin
