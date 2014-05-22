@@ -11,7 +11,7 @@ cd ghc-7.8.2-arm
 sed -i '' 's|/usr/bin/gcc|arm-apple-darwin10-clang|g' settings
 sed -i '' 's|/usr/bin/ld|arm-apple-darwin10-ld|g' settings
 # Fix a screwy 7.8.2 arm bindist. Can be removed for 7.8.3.
-find ./ -type f -exec sed -i -e 's/cfgOnAppThread//g' {} \;
+LC_ALL=C find ./ -type f -exec sed -i -e 's/cfgOnAppThread//g' {} \;
 sudo make install
 
 
