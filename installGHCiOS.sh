@@ -18,8 +18,8 @@ cd ghc-7.8.2-arm
 # Fix the settings file to point to the right scripts and clang versions
 sed -i '' 's|/usr/bin/gcc|arm-apple-darwin10-clang|g' settings
 sed -i '' 's|/usr/bin/ld|arm-apple-darwin10-ld|g' settings
-sed -i '' 's|opt|/usr/local/clang-3.0/bin/opt|g' settings
-sed -i '' 's|llc|/usr/local/clang-3.0/bin/llc|g' settings
+sed -i '' 's|"opt"|"/usr/local/clang-3.0/bin/opt"|g' settings
+sed -i '' 's|"llc"|"/usr/local/clang-3.0/bin/llc"|g' settings
 # Fix a screwy 7.8.2 arm bindist. Can be removed for 7.8.3.
 LC_ALL=C find ./ -type f -exec sed -i -e 's/cfgOnAppThread//g' {} \;
 make install
@@ -36,8 +36,8 @@ cd ghc-7.8.2-i386
 # Fix the settings file to point to the right scripts and clang versions
 sed -i '' 's|/usr/bin/gcc|i386-apple-darwin11-clang|g' settings
 sed -i '' 's|/usr/bin/ld|i386-apple-darwin11-ld|g' settings
-sed -i '' 's|opt|/usr/local/clang-3.0/bin/opt|g' settings
-sed -i '' 's|llc|/usr/local/clang-3.0/bin/llc|g' settings
+sed -i '' 's|"opt"|"/usr/local/clang-3.0/bin/opt"|g' settings
+sed -i '' 's|"llc"|"/usr/local/clang-3.0/bin/llc"|g' settings
 make install
 cd ..
 rm -r ghc-7.8.2-i386
