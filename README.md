@@ -3,7 +3,7 @@
 * Prerequisites:
    * Install Xcode http://itunes.apple.com/us/app/xcode/id497799835
    * Grab Homebrew if you don't have it: http://brew.sh
-   * Install LLVM and wget with ```brew install llvm --with-clang --all-targets``` and ```brew install wget```
+   * Install LLVM and wget with ```brew install llvm --with-clang --all-targets && brew link llvm --force``` and ```brew install wget```
    * Update Cabal with ```cabal update && cabal install cabal-install```
       * Remove **jobs: $ncpus** from *~/.cabal/config* if it's there
    * Download these scripts and place them in your PATH. For example:
