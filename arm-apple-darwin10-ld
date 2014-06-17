@@ -1,7 +1,7 @@
 #!/bin/sh
 
-TARGET_PLATFORM=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk
-TARGET_BIN="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin"
+TARGET_PLATFORM=`xcrun --show-sdk-platform-path --sdk iphoneos`
+TARGET_BIN=`xcrun --show-sdk-platform-path --sdk iphoneos`/Developer/usr/bin
 
 TARGET_LD=$TARGET_BIN/ld
 TARGET_LDFLAGS="-L$TARGET_PLATFORM/usr/lib/ -ios_version_min 7.0"
