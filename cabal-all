@@ -2,6 +2,5 @@
 
 # Simply multiplexes arguments over both simulator and device cabals
 
-cabal $@ &
-cabal-ios $@ &
-wait
+cabal $@
+cabal-ios $@
