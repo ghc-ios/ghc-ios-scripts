@@ -2,11 +2,14 @@
 
 cd /tmp
 
-echo "Downloading LLVM 3.0..."
-curl -O http://llvm.org/releases/3.0/clang+llvm-3.0-x86_64-apple-darwin11.tar.gz
-tar xvf clang+llvm-3.0-x86_64-apple-darwin11.tar.gz
-mv clang+llvm-3.0-x86_64-apple-darwin11 /usr/local/clang-3.0
-rm clang+llvm-3.0-x86_64-apple-darwin11.tar.gz
+if [[ ! -f /usr/local/clang-3.0/bin/llc ]]; then
+    echo "Downloading LLVM 3.0..."
+    curl -O http://llvm.org/releases/3.0/clang+llvm-3.0-x86_64-apple-darwin11.tar.gz
+    tar xvf clang+llvm-3.0-x86_64-apple-darwin11.tar.gz
+    mv clang+llvm-3.0-x86_64-apple-darwin11 /usr/local/clang-3.0
+    rm clang+llvm-3.0-x86_64-apple-darwin11.tar.gz
+fi
+
 
 echo "Downloading GHC for iOS devices..."
 
