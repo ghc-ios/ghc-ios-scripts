@@ -1,0 +1,9 @@
+#!/bin/sh
+
+TARGET_PLATFORM=`xcrun --show-sdk-platform-path --sdk iphoneos`
+TARGET_BIN=`xcrun --show-sdk-platform-path --sdk iphoneos`/Developer/usr/bin
+
+TARGET_LD=$TARGET_BIN/ld
+TARGET_LDFLAGS="-L$TARGET_PLATFORM/usr/lib/ -arch arm64 -ios_version_min 7.0"
+
+exec $TARGET_LD $TARGET_LDFLAGS "$@"

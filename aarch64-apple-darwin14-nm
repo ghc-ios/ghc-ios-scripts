@@ -1,0 +1,4 @@
+#!/bin/sh
+
+TARGET_NM=`xcrun -f nm`
+exec $TARGET_NM "$@"
