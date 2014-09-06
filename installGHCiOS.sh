@@ -21,7 +21,7 @@ cd ghc-7.8.3-arm
 # Remove befuddling inclusion of my local paths
 LC_CTYPE=C 
 LANG=C
-find . -type f -not -name .DS_Store -print0 | xargs -0 sed -i '' 's|/Users/lukexi/Code/ghc-ios-scripts/||g'
+find . -type f -not -name .DS_Store -not -name "*.a" -print0 | xargs -0 sed -i '' 's|/Users/lukexi/Code/ghc-ios-scripts/||g'
 
 ./configure
 # Fix the settings file to point to the right scripts and clang versions
@@ -43,7 +43,7 @@ cd ghc-7.8.3-i386
 # ditto above
 LC_CTYPE=C 
 LANG=C
-find . -type f -not -name .DS_Store -print0 | xargs -0 sed -i '' 's|/Users/lukexi/Code/ghc-ios-scripts/||g'
+find . -type f -not -name .DS_Store -not -name "*.a" -print0 | xargs -0 sed -i '' 's|/Users/lukexi/Code/ghc-ios-scripts/||g'
 
 ./configure
 # Fix the settings file to point to the right scripts and clang versions
