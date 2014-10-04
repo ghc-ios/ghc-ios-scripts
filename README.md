@@ -76,10 +76,31 @@ Xcode will now run these commands each time it builds your project.
 * You'll also need to check that the option **jobs: $ncpus** does not appear in your *~/.cabal/config* file, as it triggers a mode that does not support cross-compilation.
 * To install a package for the device and simulator, use cabal-ios (included in ghc-ios-scripts) like:
 ```
-cabal-ios install text
+cabal-ios install random
 ```
 * You should now be able to use the package in a file compiled with ghc-ios. The package will be statically linked into the .a library.
 
 # Troubleshooting
+
 * If you run into ```Illegal instruction: 4``` while running ```make install```, please see this discussion https://github.com/ghc-ios/ghc-ios-scripts/issues/4 — we're not sure what causes it yet but the thread contains a working solution.
 
+* Some packages need a flag to make them use integer-simple rather than trying to use integer-gmp, for example
+```
+cabal-ios install -finteger-simple text
+```
+and
+```
+cabal-ios install -f-integer-gmp hashable
+```
+* Similarly, some packages need to have Template Haskell disabled, such as
+```
+cabal-ios install -f-templateHaskell QuickCheck
+```
+and
+```
+cabal-ios install distributed-process --flags=-th
+```
+
+You can check the .cabal file to find the appropriate option.
+
+* For packages that use executables, there's not yet a flag to give to Cabal to keep it from trying and failing to build them (for example, Crypto and pretty-show). Until that flag is implemented, you'll have to use ```cabal get``` and manually comment out the executables section in the .cabal file, then ```cabal install```'ing the edited copy. You can use this strategy to get rid of Template Haskell in packages that don't provide a flag to do so, such as aeson. But consider submitting a patch to the developers : )
