@@ -8,6 +8,8 @@
 // We don't support 64bit architectures yet.
 VALID_ARCHS = armv7 armv7s
 
+ARCHS = "$(ARCHS_STANDARD_32_BIT)"
+
 // Avoids stripping out critical GHC runtime code (Simon Marlow has mentioned there may be around needing this)
 DEAD_CODE_STRIPPING = NO
 
