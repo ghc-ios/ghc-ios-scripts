@@ -1,9 +1,10 @@
 #!/bin/sh
 
-set -e
-
 # Works roughly like regular ghc command. Can add ghc arguments before final filename.
-# Ex. $ ghc-ios -v3 -Wall myHaskellFile.hs
+# Example: 
+# $ ghc-ios -v3 -Wall myHaskellFile.hs
+
+set -e
 
 # The number of args
 arglen=$#
