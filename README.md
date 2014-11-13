@@ -41,7 +41,7 @@ startCounter = void . forkIO . void . loop
 ```
 * Compile this like so to get Counter.a and Counter_stub.h:
 ```
-ghc-ios Counter
+ghc-ios Counter.hs
 ```
 (Counter.a will be a fat binary that works with both devices and the simulator.)
 
