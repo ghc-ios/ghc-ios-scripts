@@ -27,5 +27,5 @@ OTHER_LDFLAGS = -liconv
 // OTHER_LDFLAGS = -liconv -w
 
 // Configure this to match your installed GHC
-HEADER_SEARCH_PATHS = /usr/local/lib/ghc-7.8.2/include
+HEADER_SEARCH_PATHS = /usr/local/lib/ghc-7.8.3/include
 
