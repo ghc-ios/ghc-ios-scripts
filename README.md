@@ -19,10 +19,12 @@ installGHCiOS.sh
 # Using GHC iOS
 
 * Create or open an Xcode project (the Single View Application template is simple for testing)
-* Add HaskelliOS.xcconfig from this repository to your project. It doesn't need to be added to any targets.
-    * Click on your project at the top of the Xcode sidebar, and make sure your project is selected within it.
+* Use this repository's HaskelliOS.xcconfig
+    * From the File menu, click "Add Files to..." Select HaskelliOS.xcconfig. It doesn't need to be added to any targets.
+    * Click on your project at the top of the Xcode navigator sidebar.
+    * Within the editing window, make sure your project is selected, not the target. (The selector is located to the left of the tabs.)
     * In the "Info" tab, under "Configuration", expand each configuration and choose HaskelliOS.
-    * You may need to adjust the HEADER_SEARCH_PATHS to match your installed GHC.
+    * You may need to edit HaskelliOS.xcconfig and adjust HEADER_SEARCH_PATHS to match your installed GHC.
 * Compile your Haskell code with ghc-ios. For example, if you had a file named Counter.hs:
 ```haskell
 {-# LANGUAGE ForeignFunctionInterface #-}
@@ -39,7 +41,7 @@ startCounter = void . forkIO . void . loop
 ```
 * Compile this like so to get Counter.a and Counter_stub.h:
 ```
-ghc-ios Counter
+ghc-ios Counter.hs
 ```
 (Counter.a will be a fat binary that works with both devices and the simulator.)
 

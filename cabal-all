@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Simply multiplexes arguments over both simulator and device cabals
+# Simply multiplexes arguments over both local platform and ios cabals
 
 cabal $@
 cabal-ios $@
