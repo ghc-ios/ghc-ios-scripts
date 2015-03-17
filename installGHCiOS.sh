@@ -13,7 +13,7 @@ fi
 
 echo "Downloading GHC for iOS devices..."
 
-curl -O https://www.haskell.org/ghc/dist/7.8.3/ghc-7.8.3-arm-apple-ios.tar.xz
+curl -L -O https://www.haskell.org/ghc/dist/7.8.3/ghc-7.8.3-arm-apple-ios.tar.xz
 tar xvf ghc-7.8.3-arm-apple-ios.tar.xz && mv ghc-7.8.3 ghc-7.8.3-arm
 rm ghc-7.8.3-arm-apple-ios.tar.xz
 cd ghc-7.8.3-arm
@@ -35,7 +35,7 @@ rm -r ghc-7.8.3-arm
 
 echo "Downloading GHC for the iOS simulator..."
 cd /tmp
-curl -O https://www.haskell.org/ghc/dist/7.8.3/ghc-7.8.3-i386-apple-ios.tar.xz
+curl -L -O https://www.haskell.org/ghc/dist/7.8.3/ghc-7.8.3-i386-apple-ios.tar.xz
 tar xvf ghc-7.8.3-i386-apple-ios.tar.xz && mv ghc-7.8.3 ghc-7.8.3-i386
 rm ghc-7.8.3-i386-apple-ios.tar.xz
 cd ghc-7.8.3-i386
