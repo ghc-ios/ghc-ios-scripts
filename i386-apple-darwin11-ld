@@ -3,5 +3,6 @@
 TARGET_PLATFORM=`xcrun --show-sdk-platform-path --sdk iphonesimulator`
 TARGET_BIN=`xcrun --show-sdk-platform-path --sdk iphonesimulator`/Developer/usr/bin
 TARGET_LDFLAGS="-L$TARGET_PLATFORM/usr/lib/ -arch i386"
+TARGET_LD=$TARGET_BIN/ld
 
 exec $TARGET_LD $TARGET_LDFLAGS "$@"
