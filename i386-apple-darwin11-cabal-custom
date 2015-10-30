@@ -1,0 +1,19 @@
+#!/bin/sh
+if [ ! -f Setup ]; then
+    if [ -f Setup.hs -o -f Setup.lhs ]; then
+        ghc --make Setup.?hs
+    fi
+    if [ ! -f Setup ]; then
+        echo Could not find 'Setup or Setup.(l)hs'
+        exit 1
+    fi
+fi
+cp Setup dist/i386/setup/setup
+export COMMON="--builddir=dist/i386"
+export COMPILE="--with-ghc=i386-apple-darwin11-ghc
+                --with-ghc-pkg=i386-apple-darwin11-ghc-pkg
+                --with-gcc=i386-apple-darwin11-clang
+                --with-ld=i386-apple-darwin11-ld
+                --hsc2hs-options=--cross-compile"
+export CONFIG="--configure-option=--host=i386-apple-darwin11 --disable-shared"
+exec "`dirname $0`/common-cross-cabal" "$@"
