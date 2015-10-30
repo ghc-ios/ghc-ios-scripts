@@ -26,10 +26,12 @@ baseFileName=$(basename "$targetFile" .hs)
 # GHC complains about the -o path if this isn't here
 mkdir -p build/arm
 mkdir -p build/i386
+mkdir -p build/aarch64
 
 # Compile to architecture-specific libraries
 arm-apple-darwin10-ghc  $ghcargs -threaded -staticlib -outputdir build/arm  -o build/arm/$baseFileName  -pgmlibtool libtool-quiet $targetFile -stubdir .
 i386-apple-darwin11-ghc $ghcargs -threaded -staticlib -outputdir build/i386 -o build/i386/$baseFileName -pgmlibtool libtool-quiet $targetFile -stubdir .
+aarch64-apple-darwin14-ghc $ghcargs -threaded -staticlib -outputdir build/aarch64 -o build/aarch64/$baseFileName -pgmlibtool libtool-quiet $targetFile -stubdir .
 
 # Combine the two architectures
-lipo build/arm/$baseFileName.a build/i386/$baseFileName.a -create -output $baseFileName.a
+lipo build/arm/$baseFileName.a build/i386/$baseFileName.a build/aarch64/$baseFileName.a -create -output $baseFileName.a
