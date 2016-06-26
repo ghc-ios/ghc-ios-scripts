@@ -1,2 +1,6 @@
 #!/bin/sh
-exec ranlib $@
+
+SDK=iphoneos
+ARCH=armv7
+
+exec xcrun --sdk ${SDK} ranlib $@

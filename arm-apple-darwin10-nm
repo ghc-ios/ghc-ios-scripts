@@ -1,4 +1,6 @@
 #!/bin/sh
 
-TARGET_NM=`xcrun -f nm`
-exec $TARGET_NM "$@"
+SDK=iphoneos
+ARCH=armv7
+
+exec xcrun --sdk ${SDK} nm-classic "$@"
