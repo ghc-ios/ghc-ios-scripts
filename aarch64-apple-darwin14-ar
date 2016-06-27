@@ -1,2 +1,6 @@
 #!/bin/sh
-exec ar $@
+
+SDK=iphoneos
+ARCH=aarch64
+
+exec xcrun --sdk ${SDK} ar "$@"
