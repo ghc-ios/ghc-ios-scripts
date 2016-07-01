@@ -1,0 +1,9 @@
+#!/bin/sh
+export COMMON=--builddir=dist/x86_64
+export COMPILE="--with-ghc=x86_64-apple-darwin14-ghc
+                --with-ghc-pkg=x86_64-apple-darwin14-ghc-pkg
+                --with-gcc=x86_64-apple-darwin14-clang
+                --with-ld=x86_64-apple-darwin14-ld
+                --hsc2hs-options=--cross-compile"
+export CONFIG="--configure-option=--host=x86_64-apple-darwin14 --disable-shared"
+exec "`dirname $0`/common-cross-cabal" "$@"

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+SDK=iphonesimulator
+ARCH=x86_64
+
+exec xcrun --sdk ${SDK} clang -arch ${ARCH} -miphoneos-version-min=7.0 "$@"
