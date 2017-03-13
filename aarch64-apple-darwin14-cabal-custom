@@ -1,0 +1,25 @@
+#!/bin/sh
+if [ ! -f Setup ]; then
+    if [ -f Setup.hs -o -f Setup.lhs ]; then
+        ghc --make Setup.?hs
+    fi
+    if [ ! -f Setup ]; then
+        echo Could not find 'Setup or Setup.(l)hs'
+        exit 1
+    fi
+fi
+cp Setup dist/aarch64/setup/setup
+if [ $# -lt 1 ]; then
+    echo "Usage: $(basename $0) clean|configure|build|install"
+    exit 1
+fi
+
+
+export COMMON=--builddir=dist/aarch64
+export COMPILE="--with-ghc=aarch64-apple-darwin14-ghc
+                --with-ghc-pkg=aarch64-apple-darwin14-ghc-pkg
+                --with-gcc=aarch64-apple-darwin14-clang
+                --with-ld=aarch64-apple-darwin14-ld
+                --hsc2hs-options=--cross-compile"
+export CONFIG="--configure-option=--host=aarch64-apple-darwin14 --disable-shared"
+exec "`dirname $0`/common-cross-cabal" "$@"

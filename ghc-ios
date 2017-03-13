@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Works roughly like regular ghc command. Can add ghc arguments before final filename.
-# Example: 
+# Example:
 # $ ghc-ios -v3 -Wall myHaskellFile.hs
 
 set -e
@@ -26,10 +26,18 @@ baseFileName=$(basename "$targetFile" .hs)
 # GHC complains about the -o path if this isn't here
 mkdir -p build/arm
 mkdir -p build/i386
+mkdir -p build/aarch64
+mkdir -p build/x86_64
 
 # Compile to architecture-specific libraries
-arm-apple-darwin10-ghc  $ghcargs -threaded -staticlib -outputdir build/arm  -o build/arm/$baseFileName  -pgmlibtool libtool-quiet $targetFile -stubdir .
-i386-apple-darwin11-ghc $ghcargs -threaded -staticlib -outputdir build/i386 -o build/i386/$baseFileName -pgmlibtool libtool-quiet $targetFile -stubdir .
+arm-apple-darwin10-ghc     $ghcargs -threaded -staticlib -outputdir build/arm     -o build/arm/$baseFileName     -pgmlibtool libtool-quiet $targetFile -stubdir .
+i386-apple-darwin11-ghc    $ghcargs -threaded -staticlib -outputdir build/i386    -o build/i386/$baseFileName    -pgmlibtool libtool-quiet $targetFile -stubdir .
+aarch64-apple-darwin14-ghc $ghcargs -threaded -staticlib -outputdir build/aarch64 -o build/aarch64/$baseFileName -pgmlibtool libtool-quiet $targetFile -stubdir .
+x86_64-apple-darwin14-ghc  $ghcargs -threaded -staticlib -outputdir build/x86_64  -o build/x86_64/$baseFileName  -pgmlibtool libtool-quiet $targetFile -stubdir .
 
 # Combine the two architectures
-lipo build/arm/$baseFileName.a build/i386/$baseFileName.a -create -output $baseFileName.a
+lipo build/arm/$baseFileName.a \
+     build/i386/$baseFileName.a \
+     build/aarch64/$baseFileName.a \
+     build/x86_64/$baseFileName.a \
+     -create -output $baseFileName.a

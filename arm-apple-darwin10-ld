@@ -1,37 +1,6 @@
 #!/bin/sh
 
-TARGET_PLATFORM=`xcrun --show-sdk-platform-path --sdk iphoneos`
-TARGET_BIN=`xcrun --show-sdk-platform-path --sdk iphoneos`/Developer/usr/bin
+SDK=iphoneos
+ARCH=armv7
 
-TARGET_LD=$TARGET_BIN/ld
-TARGET_LDFLAGS="-L$TARGET_PLATFORM/usr/lib/ -ios_version_min 7.0"
-
-# echo "LINKING WITH: $@"
-
-args=$@
-
-# Check if we're building an object file by looking for "-o file.o", and find its filename
-# sed's -E allows extended regexes (cleaner syntax), -n suppresses non-matching input, the |p flag prints matches.
-outFileName=$(echo "$args" | sed -En 's|.*-o ([^.]*)\.o.*|\1|p')
-
-# Only need lipo when we're building object files
-if [ -n "$outFileName" ]
-then
-# Create filename variants for armV7 and armV7s
-fileNameForArmv7=$outFileName-armv7
-fileNameForArmv7s=$outFileName-armv7s
-
-# Call gcc twice, once for each architecture, outputting to our filename variants
-$TARGET_LD $TARGET_LDFLAGS -arch armv7 ${args//$outFileName.o/$fileNameForArmv7.o}
-$TARGET_LD $TARGET_LDFLAGS -arch armv7s ${args//$outFileName.o/$fileNameForArmv7s.o}
-
-# Lipo the two filename variants together
-lipo $fileNameForArmv7.o $fileNameForArmv7s.o -create -output $outFileName.o
-
-# Clean up
-rm $fileNameForArmv7.o $fileNameForArmv7s.o
-else
-# echo "Non-object-generating link command: $TARGET_LD $TARGET_LDFLAGS -arch armv7s $@"
-# If not building object files, call regularly. Still need to include an arch to configure ld for arm mode.
-exec $TARGET_LD $TARGET_LDFLAGS -arch armv7s "$@"
-fi
+exec xcrun --sdk ${SDK} ld -arch ${ARCH} "$@"

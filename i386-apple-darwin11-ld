@@ -1,8 +1,6 @@
 #!/bin/sh
 
-TARGET_PLATFORM=`xcrun --show-sdk-platform-path --sdk iphonesimulator`
-TARGET_BIN=`xcrun --show-sdk-platform-path --sdk iphonesimulator`/Developer/usr/bin
-TARGET_LDFLAGS="-L$TARGET_PLATFORM/usr/lib/ -arch i386"
-TARGET_LD=$TARGET_BIN/ld
+SDK=iphonesimulator
+ARCH=i386
 
-exec $TARGET_LD $TARGET_LDFLAGS "$@"
+exec xcrun --sdk ${SDK} ld -arch ${ARCH} "$@"

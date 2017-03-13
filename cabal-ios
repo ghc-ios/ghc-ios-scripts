@@ -6,3 +6,5 @@ set -e
 
 i386-apple-darwin11-cabal $@
 arm-apple-darwin10-cabal $@
+x86_64-apple-darwin14-cabal $@
+aarch64-apple-darwin14-cabal $@

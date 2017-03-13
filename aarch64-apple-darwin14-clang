@@ -1,7 +1,6 @@
 #!/bin/sh
-TARGET_PLATFORM=`xcrun --show-sdk-path --sdk iphoneos`
-# TARGET_GCC=`xcrun -f clang`
-TARGET_GCC=/usr/local/opt/llvm/bin/clang
-TARGET_CFLAGS="-isysroot $TARGET_PLATFORM -arch arm64 -miphoneos-version-min=7.0"
 
-exec $TARGET_GCC $TARGET_CFLAGS "$@"
+SDK=iphoneos
+ARCH=arm64
+
+exec xcrun --sdk ${SDK} clang -arch ${ARCH} -miphoneos-version-min=7.0 "$@"

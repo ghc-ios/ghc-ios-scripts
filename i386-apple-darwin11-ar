@@ -1,2 +1,6 @@
 #!/bin/sh
-exec ar $@
+
+SDK=iphonesimulator
+ARCH=i386
+
+exec xcrun --sdk ${SDK} ar "$@"

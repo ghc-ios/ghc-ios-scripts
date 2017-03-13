@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SDK=iphoneos
-ARCH=armv7
+SDK=iphonesimulator
+ARCH=x86_64
 
 exec xcrun --sdk ${SDK} ranlib $@
